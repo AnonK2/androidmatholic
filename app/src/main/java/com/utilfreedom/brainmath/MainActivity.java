@@ -1,6 +1,5 @@
 package com.utilfreedom.brainmath;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,125 +7,191 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
-    private LinearLayout mLinearLayout;
     private TextView indicator;
     private TextView gameOver;
     private EditText second;
     private Button startBtn;
-
-    private boolean starting = false;
+    private  Button cancelBtn;
+    private TextView number1;
+    private TextView number2;
+    private TextView number3;
+    private TextView operationSymbol;
+    private boolean answer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        immersiveMode();
+
+        View decorView = getWindow().getDecorView();
+        // Hide the status bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+        // Remember that you should NEVER SHOW the ACTION BAR if the
+        // STATUS BAR is HIDDEN, so hide that too if necessary.
+        getSupportActionBar().hide();
 
         indicator = (TextView) findViewById(R.id.indicator);
         gameOver = (TextView) findViewById(R.id.gameOver);
         second = (EditText) findViewById(R.id.second);
         startBtn = (Button) findViewById(R.id.startBtn);
+        cancelBtn = (Button) findViewById(R.id.cancelBtn);
+        number1 = (TextView) findViewById(R.id.number1);
+        number2 = (TextView) findViewById(R.id.number2);
+        number3 = (TextView) findViewById(R.id.number3);
+        operationSymbol = (TextView) findViewById(R.id.operationSymbol);
+
+        setNumberAndOperation();
 
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                gameOver.setText("");
-
-                long _editTextTime = Long.valueOf(String.valueOf(second.getText()));
-
-                Animation mAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.indicatoranimation);
-                mAnimation.setDuration(_editTextTime * 1000);
-                indicator.startAnimation(mAnimation);
-
-//                updateGame(_editTextTime);
-
-                CheckIndicatorToZero task = new CheckIndicatorToZero(_editTextTime);
-
-                if (starting == true) {
-                    task.cancel(true);
-                    task.counting = false;
-                    new CheckIndicatorToZero(_editTextTime).cancel(true);
-                    new CheckIndicatorToZero(_editTextTime).execute();
-                    System.out.println("TASK CANCEL!");
-
-//                    if (task.isCancelled()) {
-//                        System.out.println("CANCELLED");
-//                        task.execute();
-//                    }
-
+                if (answer == true) {
+                    stillPlaying();
                 } else {
-                    System.out.println("TASK START!");
-                    new CheckIndicatorToZero(_editTextTime).execute();
-                    starting = true;
+                    gameOver.setText("GAME OVER");
                 }
+            }
+        });
 
-
-
-
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (answer == false) {
+                    stillPlaying();
+                } else {
+                    gameOver.setText("GAME OVER");
+                }
             }
         });
     }
 
-//    public void updateGame(double editTextTime) {
-//        CheckIndicatorToZero task = new CheckIndicatorToZero(editTextTime);
-//        System.out.println("STATUS CODE: " + task.getStatus());
-//
-////        task.execute();
-//        if (task.getStatus() == AsyncTask.Status.PENDING) {
-//            System.out.println("STATUS CODE: " + task.getStatus());
-//            System.out.println("TASK CANCEL!");
-//             task.cancel(true);
-//             task = new CheckIndicatorToZero(editTextTime);
-//             task.execute();
-//        } else {
-//            System.out.println("STATUS CODE: " + task.getStatus());
-//            System.out.println("TASK START!");
-//            task = new CheckIndicatorToZero(editTextTime);
-//            task.execute();
-//        }
-//    }
+    private void stillPlaying() {
+        gameOver.setText("");
+        setNumberAndOperation();
 
-    public void decreaseIndicator(double editTextTime, boolean counting) {
-        final double _endTime = editTextTime + (System.currentTimeMillis() / 1000.0);
-//        double now;
+        long _editTextTime = Long.valueOf(String.valueOf(second.getText()));
+        // set the animation.
+        Animation mAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.indicatoranimation);
+        mAnimation.setDuration(_editTextTime * 1000);
+        mAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation arg0) {
+            }
 
-        while ((System.currentTimeMillis() / 1000.0) < _endTime && counting == true) {
-//            now = _endTime - (System.currentTimeMillis() / 1000.0);
+            @Override
+            public void onAnimationRepeat(Animation arg0) {
+            }
 
+            @Override
+            public void onAnimationEnd(Animation arg0) {
+                gameOver.setText("GAME OVER"); // after "indicator" decrease to / scaleX to "0".
+            }
+        });
+        // attach the animation and start the animation.
+        indicator.startAnimation(mAnimation);
+    }
+
+    // Operation enum
+    private enum Operation {
+        MINUS ("-"),
+        PLUS("+"),
+        MULTIPLY("x");
+
+        private String operationSymbol;
+
+        private Operation(String autoAssign) { // whenever Operation."KEY" called, the "CONSTRUCTOR" assign
+                                               // the "VALUE" of the specific "KEY" to "autoAssign" pass it to "operationSymbol".
+            operationSymbol = autoAssign;
+        }
+
+        public String getOperationSymbol() {
+            return operationSymbol;
+        }
+
+    }
+
+    public void setNumberAndOperation() {
+        Random rand = new Random();
+        int result = 0;
+        int num3 = 0;
+        int num1 = rand.nextInt(30) + 1;
+        int num2 = rand.nextInt(30) + 1;
+        Operation randOperation = Operation.values()[rand.nextInt(3)];
+//        System.out.println(randOperation + " equals TO: " + randOperation.operationSymbol);
+        operationSymbol.setText(randOperation.getOperationSymbol()); // randOperation -> Operation."KEY", "KEY" -> MINUS, PLUS, or MULTIPLY
+
+        switch (randOperation) {
+            case MINUS:
+                if (num1 < num2) {
+                    int a = num1, b = num2;
+
+                    num1 = b;
+                    num2 = a;
+                }
+                result = num1 - num2;
+                break;
+            case PLUS:
+                result = num1 + num2;
+                break;
+            case MULTIPLY:
+                result = num1 * num2;
+                break;
+        }
+
+        if (Math.random() <= 0.5) { // 50% always num3
+            num3 = result;
+        } else { // 50% -> num3 + random num range(-1 to 1)
+            num3 = (result != 0) ?  result + rand.nextInt(3) + (-1) : result; // range -1 to 1
+        }
+
+
+
+        number1.setText("" + num1);
+        number2.setText("" + num2);
+        number3.setText("" + num3);
+        System.out.printf("num1: %d, operation: %s, num2: %d, num3:%d\n", num1, String.valueOf(randOperation), num2, num3);
+
+        if (num3 == result) {
+            answer = true;
+        } else {
+            answer = false;
         }
     }
 
-    private class CheckIndicatorToZero extends AsyncTask<Void, Void, Void> {
-        private double _editTextTime;
-        private final double nowSecond = System.currentTimeMillis() / 1000.0;
-        public boolean counting = true;
-
-        public CheckIndicatorToZero(double editTextTime) {
-            _editTextTime = editTextTime;
-        }
-
-        @Override
-        protected Void doInBackground(Void... objects) {
-//                decreaseIndicator(_editTextTime, true);
-
-            return null;
-        }
-
-
-        @Override
-        protected void onPostExecute(Void b) {
-            super.onPostExecute(b);
-
-            System.out.println("GAME OVER");
-            gameOver.setText("GAME OVER");
-            starting = false;
-        }
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        immersiveMode();
+        getWindow().getDecorView().setOnSystemUiVisibilityChangeListener
+                (new View.OnSystemUiVisibilityChangeListener() {
+                    @Override
+                    public void onSystemUiVisibilityChange(int visibility) {
+                        immersiveMode();
+                    }
+                });
     }
 
+    public void immersiveMode() {
+        final View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE);
+    }
 
-
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        immersiveMode();
+    }
 }

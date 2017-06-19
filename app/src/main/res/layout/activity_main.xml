@@ -6,6 +6,7 @@
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFE082"
     tools:context="com.utilfreedom.brainmath.MainActivity">
 
     <LinearLayout
@@ -13,7 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/indicator"
         android:orientation="horizontal"
         android:weightSum="1">
 
@@ -22,42 +22,112 @@
             android:layout_width="0dp"
             android:layout_height="10dp"
             android:layout_weight="1"
-            android:background="@android:color/holo_red_light"/>
+            android:background="#F44336"/>
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/btnLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="1">
 
         <Button
             android:id="@+id/startBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Start"/>
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:text="Correct"/>
 
         <Button
             android:id="@+id/cancelBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:text="Wrong"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/numberWrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/indicatorLayout"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="81dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Cancel"/>
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/number1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_weight="0.45"
+                android:elevation="0dp"
+                android:text="99"
+                android:textAlignment="textEnd"
+                android:textSize="65sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/operationSymbol"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="-6.3dp"
+                android:layout_weight="0.1"
+                android:text="X"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textSize="45sp"/>
+
+            <TextView
+                android:id="@+id/number2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_weight="0.45"
+                android:text="99"
+                android:textAlignment="viewStart"
+                android:textSize="65sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/number3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_weight="1"
+            android:text="111"
+            android:textAlignment="center"
+            android:textSize="65sp"
+            android:textStyle="bold"/>
+
     </LinearLayout>
 
     <EditText
         android:id="@+id/second"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/linearLayout"
+        android:layout_above="@+id/btnLayout"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="138dp"
+        android:layout_marginBottom="35dp"
         android:ems="10"
-        android:hint="how many second?"
+        android:hint="second?"
         android:inputType="number"
         android:textAlignment="center"/>
 
@@ -65,9 +135,10 @@
         android:id="@+id/gameOver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/second"
+        android:layout_below="@+id/indicatorLayout"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="117dp"
-        android:textAlignment="center"/>
+        android:layout_marginTop="23dp"
+        android:textAlignment="center"
+        android:textSize="30sp"/>
 
 </RelativeLayout>
