@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "638411499727",
+    "firebase_url": "https://brainmath-15b0a.firebaseio.com",
+    "project_id": "brainmath-15b0a",
+    "storage_bucket": "brainmath-15b0a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638411499727:android:33f473f78a83964c",
+        "android_client_info": {
+          "package_name": "com.utilfreedom.brainmath"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "638411499727-d01uq3uv42a4rrit23alfju2kp1pgl42.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAz4ZSPdNKIPab4QI-2SlM3ynr0PkS3f4o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

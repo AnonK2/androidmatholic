@@ -1,11 +1,43 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.CustomTheme.FullScreen" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+
+        <item name="android:scrollViewStyle">@style/Widget.CustomTheme.ScrollView</item>
+
+        <item name="android:buttonStyle">@style/Widget.CustomTheme.ButtonBorderless</item>
+    </style>
+
+    <style name="Theme.CustomTheme.FullScreen.GameOver">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+    <!-- ScrollView -->
+    <style name="Widget.CustomTheme.ScrollView" parent="android:Widget.ScrollView">
+        <item name="android:overScrollMode">never</item>
+    </style>
+    <!-- Button -->
+    <style name="Widget.CustomTheme.ButtonBorderless" parent="Theme.AppCompat.Light">
+        <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Borderless.Colored</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+    </style>
+
+    <style name="GameOverDialog" parent="@android:style/Theme.Holo.Light.Dialog.NoActionBar">
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowAnimationStyle">@style/GameOverDialogAnimation</item>
+        <item name="android:buttonStyle">@style/Widget.CustomTheme.ButtonBorderless</item>
+
+    </style>
+
+    <style name="GameOverDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_down</item>
+        <item name="android:windowExitAnimation">@anim/fade_out_instant</item>
     </style>
 
 </resources>

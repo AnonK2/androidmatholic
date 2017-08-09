@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="com.utilfreedom.brainmath.StartGameLevelFragment"
+             android:background="#78909c">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/easyBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="7dp"
+            android:text="Easy"
+            android:padding="5sp"
+            android:textAlignment="center"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/mediumBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/easyBtn"
+            android:layout_below="@+id/easyBtn"
+            android:layout_margin="7dp"
+            android:text="Medium"
+            android:padding="5sp"
+            android:textAlignment="center"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/hardBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/mediumBtn"
+            android:layout_centerVertical="true"
+            android:layout_margin="7dp"
+            android:text="Hard"
+            android:padding="5sp"
+            android:textAlignment="center"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/insaneBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/button3"
+            android:layout_below="@+id/button3"
+            android:layout_margin="7dp"
+            android:text="Insane"
+            android:padding="5sp"
+            android:textAlignment="center"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:text="back"
+        android:padding="5sp"
+        android:textAlignment="center"
+        android:textSize="18sp"/>
+</RelativeLayout>

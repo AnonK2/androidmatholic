@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">BrainMath</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="new_score">newScore</string>
+    <string name="game_setup">GAME_SETUP</string>
+    <string name="game_setup_range">GAME_SETUP_RANGE</string>
+    <string name="game_setup_duration">GAME_SETUP_DURATION</string>
+    <string name="game_setup_difficulty">GAME_SETUP_DIFFICULTY</string>
+    <string name="PLAYER_2_UID">PLAYER_1_UID</string>
+    <string name="IS_HOST">IS_HOST</string>
+    <string name="ROOM_UID">ROOM_UID</string>
+    <string name="PLAYER_1_UID">PLAYER_1_UID</string>
+    <string name="IS_ONLINE">IS_ONLINE</string>
 </resources>

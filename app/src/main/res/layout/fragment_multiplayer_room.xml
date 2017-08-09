@@ -1,0 +1,130 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             tools:context="com.utilfreedom.brainmath.MultiplayerRoomFragment"
+                                             android:background="#1fbba6">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/centerGuide"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="192dp"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:id="@+id/player1V"
+        android:background="@drawable/layout_room"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:id="@+id/player2V"
+        android:background="@drawable/layout_room"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/player1V"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp" />
+
+
+    <ImageView
+        android:id="@+id/profileImage1IV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/player1V"
+        app:layout_constraintLeft_toLeftOf="@id/player1V"
+        app:layout_constraintBottom_toBottomOf="@id/player1V"
+        app:srcCompat="@mipmap/ic_launcher_round"
+        android:layout_marginLeft="50dp"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/player1TV"
+        android:text="Kenny"
+        app:layout_constraintTop_toTopOf="@id/player1V"
+        app:layout_constraintLeft_toRightOf="@id/profileImage1IV"
+        app:layout_constraintBottom_toBottomOf="@id/player1V"
+        android:gravity="center"
+        android:layout_marginLeft="25dp"
+        android:textColor="#ffffff"/>
+
+    <ImageView
+        android:id="@+id/profileImage2IV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/player2V"
+        app:layout_constraintLeft_toLeftOf="@id/player2V"
+        app:layout_constraintBottom_toBottomOf="@id/player2V"
+        app:srcCompat="@mipmap/ic_launcher_round"
+        android:layout_marginLeft="50dp"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/player2TV"
+        android:text="Kenny"
+        app:layout_constraintTop_toTopOf="@id/player2V"
+        app:layout_constraintLeft_toRightOf="@id/profileImage2IV"
+        app:layout_constraintBottom_toBottomOf="@id/player2V"
+        android:gravity="center"
+        android:layout_marginLeft="25dp"
+        android:textColor="#ffffff"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/difficultyTV"
+        android:text="INSANE"
+        app:layout_constraintTop_toBottomOf="@id/player2V"
+        app:layout_constraintLeft_toLeftOf="@id/player2V"
+        app:layout_constraintRight_toRightOf="@id/player2V"
+        android:layout_marginTop="40dp"
+        android:gravity="center"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/startBtn"
+        android:text="Start"
+        android:background="@android:drawable/btn_default"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/difficultyTV"
+        app:layout_constraintLeft_toLeftOf="@id/difficultyTV"
+        app:layout_constraintRight_toRightOf="@id/difficultyTV"
+        android:layout_marginTop="40dp"
+        android:paddingLeft="36dp"
+        android:paddingRight="36dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cancelBtn"
+        android:text="Cancel"
+        android:background="@android:drawable/btn_default"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"/>
+
+</android.support.constraint.ConstraintLayout>
